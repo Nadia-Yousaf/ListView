@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle("Dialog Title");
         builder.setMessage("Dialog Message");
         builder.setCancelable(false);
+        LayoutInflater inflater= this.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.dialog_layout, null));
         builder.setPositiveButton("Positive", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -36,5 +39,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Negative button was clicked", Toast.LENGTH_LONG).show();
             }
         });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
